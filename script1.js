@@ -1,6 +1,10 @@
+//presentación
+
 function saludar() {
     console.log("¡Hola! Te voy a ayudar a elegir tu próximo auto.\n¡Empecemos!")
 }
+
+//pedido de datos
 
 function inputUsuario_uso() {
     console.log("¿Qué uso mayoritario le vas a dar? (Podés seleccionar más de una opción)")
@@ -13,7 +17,7 @@ function inputUsuario_uso() {
 
     } while (resp_uso < 1 || resp_uso > 4 || isNaN(resp_uso))
 
-    procesar_uso(resp_uso)
+    return(resp_uso)
 }
 
 function inputUsuario_combustible() {
@@ -27,7 +31,7 @@ function inputUsuario_combustible() {
 
     } while (resp_combustible < 1 || resp_combustible > 5 || isNaN(resp_combustible))
 
-    procesar_combustible(resp_combustible)
+    return(resp_combustible)
 }
 
 function inputUsuario_pasajeros() {
@@ -41,24 +45,12 @@ function inputUsuario_pasajeros() {
 
     } while (resp_pasajeros < 1 || resp_pasajeros > 4 || isNaN(resp_pasajeros))
 
-    procesar_pasajeros(resp_pasajeros)
+    return(resp_pasajeros)
 }
 
-function procesar_uso(resp_uso) {
-    // switch (resp_uso) {
-    //     case 1:
-    //         urbano = true
-    //         break
-    //     case 2:
-    //         urbano_Interurbano = true
-    //         break
-    //     case 3:
-    //         offroad = true
-    //         break
-    //     case 4:
-    //         cargas = true
-    // }
+// asignaciones de datos pedidos
 
+function procesar_uso(resp_uso, opcionesElegidas) {
     switch (resp_uso) {
         case 1:
             resp_uso = "Urbano"
@@ -76,27 +68,7 @@ function procesar_uso(resp_uso) {
     opcionesElegidas.push(resp_uso)
 }
 
-function procesar_combustible(resp_combustible) {
-    // switch (resp_combustible) {
-    //     case 1:
-    //         nafta = true
-    //         break
-    //     case 2:
-    //         diesel = true
-    //         break
-    //     case 3:
-    //         electrico = true
-    //         break
-    //     case 4:
-    //         hibrido = true
-    //         break
-    //     case 5:
-    //         nafta = true
-    //         diesel = true
-    //         electrico = true
-    //         hibrido = true
-    // }
-
+function procesar_combustible(resp_combustible, opcionesElegidas) {
     switch (resp_combustible) {
         case 1:
             resp_combustible = "Nafta"
@@ -109,29 +81,12 @@ function procesar_combustible(resp_combustible) {
             break
         case 4:
             resp_combustible = "Híbrido"
-            break
-        /*case 5:
-            resp_combustible*/
     }
 
     opcionesElegidas.push(resp_combustible)
 }
 
-function procesar_pasajeros(resp_pasajeros) {
-    // switch (resp_pasajeros) {
-    //     case 1:
-    //         uno_o_dos = true
-    //         break
-    //     case 2:
-    //         hasta_4 = true
-    //         break
-    //     case 3:
-    //         hasta_5 = true
-    //         break
-    //     case 4:
-    //         mas_de_5 = true
-    // }
-
+function procesar_pasajeros(resp_pasajeros, opcionesElegidas) {
     switch (resp_pasajeros) {
         case 1:
             resp_pasajeros = "1 ó 2"
@@ -140,7 +95,7 @@ function procesar_pasajeros(resp_pasajeros) {
             resp_pasajeros = "Hasta 4 (inclusive) (o 5 si el quinto es niño)"
             break
         case 3:
-            resp_pasajeros = "Hasta 5 (inclusive)"
+            resp_pasajeros = "Hasta 5"
             break
         case 4:
             resp_pasajeros = "Más de 5"
@@ -149,37 +104,73 @@ function procesar_pasajeros(resp_pasajeros) {
     opcionesElegidas.push(resp_pasajeros)
 }
 
+//creación y muestra de resultados
+
+function crearResultados(opcionesElegidasString, autos) {
+    let resultados = []
+    let resultadoPosible = []
+
+    for(let i = 0; i < autos.length; i++) {
+        let usoString = autos[i].uso
+        resultadoPosible.push(usoString)
+        let combustibleString = autos[i].combustible
+        resultadoPosible.push(combustibleString)
+        let pasajerosString = autos[i].pasajeros
+        resultadoPosible.push(pasajerosString)
+
+        if (opcionesElegidasString == resultadoPosible.join(" ")) {
+            let autoString = `${autos[i].marca} ${autos[i].modelo}`
+            resultados.push(autoString)
+        }
+        else {
+            resultadoPosible.length = 0
+            usoString = ""
+            combustibleString = ""
+            pasajerosString = ""
+        }
+    }
+
+    return (resultados)
+}
+
+function mostrarResultados(resultados) {
+    console.log(resultados)
+}
+
+//clases, objetos y arrays
+
 class Auto {
-    constructor(marca, modelo, uso1, uso2, uso3, combustible1, combustible2, pasajeros) {
+    constructor(marca, modelo, uso = [], combustible = [], pasajeros) {
         this.marca = marca
         this.modelo = modelo
-        this.uso1 = uso1
-        this.uso2 = uso2
-        this.uso3 = uso3
-        this.combustible1 = combustible1
-        this.combustible2 = combustible2
+        this.uso = uso
+        this.combustible = combustible
         this.pasajeros = pasajeros
     }
 }
 
-function mostrarResultados() {
-}
-
 const opcionesElegidas = []
 const autos = []
-autos.push(new Auto("Volkswagwen", "Taos", "Urbano/Interurbano", "Offroad", undefined, "Nafta", undefined, "Hasta 5"))
-autos.push(new Auto("Chevrolet", "Cruze", "Urbano/Interurbano", undefined, undefined, "Nafta", undefined, "Hasta 5"))   
-autos.push(new Auto("Toyota", "Corolla", "Urbano/Interurbano", undefined, undefined, "Nafta", "Híbrido", "Hasta 5"))
-autos.push(new Auto("Toyota", "Corolla Cross", "Urbano/Interurbano", "Offroad", undefined, "Nafta", "Híbrido", "Hasta 5"))
-autos.push(new Auto("Ford", "Ka", "Urbano", undefined, undefined, "Nafta", undefined, "1 ó 2"))
-autos.push(new Auto("Peugeot", "Partner Patagónica", "Urbano/Interurbano", "Offroad", "Cargas", "Nafta", "Diésel", "Hasta 5"))
-autos.push(new Auto("Peugeot", "Partner Confort", "Urbano/Interurbano", "Cargas", undefined, "Nafta", "Diésel", "1 ó 2"))
-autos.push(new Auto("Ford", "Ranger", "Urbano/Interurbano", "Offroad", "Cargas", "Nafta", "Diésel", "Hasta 5"))
-autos.push(new Auto("Volkswagwen", "Tiguan Allspace", "Urbano/Interurbano", "Offroad", undefined, "Nafta", undefined, "Más de 5"))
 
+autos.push(new Auto("Volkswagwen", "Taos", "Urbano/Interurbano Offroad", "Nafta", "Hasta 5"))
+autos.push(new Auto("Chevrolet", "Cruze", "Urbano/Interurbano", "Nafta", "Hasta 5"))   
+autos.push(new Auto("Toyota", "Corolla", "Urbano/Interurbano", "Nafta Híbrido", "Hasta 5"))
+autos.push(new Auto("Toyota", "Corolla Cross", "Urbano/Interurbano Offroad", "Nafta Híbrido", "Hasta 5"))
+autos.push(new Auto("Ford", "Ka", "Urbano", "Nafta", "1 ó 2"))
+autos.push(new Auto("Peugeot", "Partner Patagónica", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
+autos.push(new Auto("Peugeot", "Partner Confort", "Urbano/Interurbano Cargas", "Nafta Diésel", "1 ó 2"))
+autos.push(new Auto("Ford", "Ranger", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
+autos.push(new Auto("Volkswagwen", "Tiguan Allspace", "Urbano/Interurbano Offroad", "Nafta", "Más de 5"))
 
+//invocaciones
 
-inputUsuario_uso()
-inputUsuario_combustible()
-inputUsuario_pasajeros()
-mostrarResultados()
+let inputUso = inputUsuario_uso()
+let inputCombustible = inputUsuario_combustible()
+let inputPasajeros = inputUsuario_pasajeros()
+procesar_uso(inputUso, opcionesElegidas)
+procesar_combustible(inputCombustible, opcionesElegidas)
+procesar_pasajeros(inputPasajeros, opcionesElegidas)
+let opcionesElegidasString = opcionesElegidas.join(" ")
+let resultados = crearResultados(opcionesElegidasString, autos)
+mostrarResultados(resultados)
+
