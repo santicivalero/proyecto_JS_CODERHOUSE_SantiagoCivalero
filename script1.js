@@ -161,7 +161,7 @@ autos.push(new Auto("Peugeot", "Partner Patagónica", "Urbano/Interurbano Offroa
 autos.push(new Auto("Peugeot", "Partner Confort", "Urbano/Interurbano Cargas", "Nafta Diésel", "1 ó 2"))
 autos.push(new Auto("Ford", "Ranger", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
 autos.push(new Auto("Volkswagwen", "Tiguan Allspace", "Urbano/Interurbano Offroad", "Nafta", "Más de 5"))
-
+autos.push(new Auto("Toyota", "Etios", "Urbano", "Nafta", "1 ó 2"))
 //invocaciones
 
 let inputUso = inputUsuario_uso()
@@ -173,4 +173,15 @@ procesar_pasajeros(inputPasajeros, opcionesElegidas)
 let opcionesElegidasString = opcionesElegidas.join(" ")
 let resultados = crearResultados(opcionesElegidasString, autos)
 mostrarResultados(resultados)
+
+
+let escribirResultados = document.getElementById("resultados")
+for (let i = 0; i < resultados.length; i++)
+escribirResultados.innerHTML += `<p>${resultados[i]}</p>`
+
+
+
+
+
+
 
