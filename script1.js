@@ -6,105 +6,105 @@ function saludar() {
 
 //pedido de datos
 
-function inputUsuario_uso() {
+function inputUsuarioUso() {
     console.log("¿Qué uso mayoritario le vas a dar? (Podés seleccionar más de una opción)")
 
     do {
-        resp_uso = parseInt(prompt("1) Urbano \n2) Urbano/Interurbano \n3) Offroad \n4) Cargas"))
+        respUso = parseInt(prompt("1) Urbano \n2) Urbano/Interurbano \n3) Offroad \n4) Cargas"))
 
-        if ((resp_uso < 1) || (resp_uso > 4) || (!Number.isInteger(resp_uso)))
+        if ((respUso < 1) || (respUso > 4) || (!Number.isInteger(respUso)))
             alert("Ingrese una opción correcta")
 
-    } while (resp_uso < 1 || resp_uso > 4 || isNaN(resp_uso))
+    } while (respUso < 1 || respUso > 4 || isNaN(respUso))
 
-    return(resp_uso)
+    return(respUso)
 }
 
-function inputUsuario_combustible() {
+function inputUsuarioCombustible() {
     console.log("¿Con qué combustible/energía se impulsará? (Podés seleccionar más de una opción)")
 
     do {
-        resp_combustible = parseInt(prompt("1) Nafta\n 2) Diésel \n3) Eléctrico \n4) Híbrido \n5) Indistinto"))
+        respCombustible = parseInt(prompt("1) Nafta\n 2) Diésel \n3) Eléctrico \n4) Híbrido \n5) Indistinto"))
 
-        if ((resp_combustible < 1) || (resp_combustible > 5) || (!Number.isInteger(resp_combustible)))
+        if ((respCombustible < 1) || (respCombustible > 5) || (!Number.isInteger(respCombustible)))
             alert("Ingrese una opción correcta")
 
-    } while (resp_combustible < 1 || resp_combustible > 5 || isNaN(resp_combustible))
+    } while (respCombustible < 1 || respCombustible > 5 || isNaN(respCombustible))
 
-    return(resp_combustible)
+    return(respCombustible)
 }
 
-function inputUsuario_pasajeros() {
+function inputUsuarioPasajeros() {
     console.log("¿Cuántos pasajeros viajarán habitualmente?")
 
     do {
-        resp_pasajeros = parseInt(prompt("1) 1 ó 2 \n 2) Hasta 4 (inclusive) (o 5 si el quinto es niño) \n3) Hasta 5 (inclusive) \n4) Más de 5"))
+        respPasajeros = parseInt(prompt("1) 1 ó 2 \n 2) Hasta 4 (inclusive) (o 5 si el quinto es niño) \n3) Hasta 5 (inclusive) \n4) Más de 5"))
 
-        if ((resp_pasajeros < 1) || (resp_pasajeros > 4) || (!Number.isInteger(resp_pasajeros)))
+        if ((respPasajeros < 1) || (respPasajeros > 4) || (!Number.isInteger(respPasajeros)))
             alert("Ingrese una opción correcta")
 
-    } while (resp_pasajeros < 1 || resp_pasajeros > 4 || isNaN(resp_pasajeros))
+    } while (respPasajeros < 1 || respPasajeros > 4 || isNaN(respPasajeros))
 
-    return(resp_pasajeros)
+    return(respPasajeros)
 }
 
 // asignaciones de datos pedidos
 
-function procesar_uso(resp_uso, opcionesElegidas) {
-    switch (resp_uso) {
+function procesarUso(respUso, opcionesElegidas) {
+    switch (respUso) {
         case 1:
-            resp_uso = "Urbano"
+            respUso = "Urbano"
             break
         case 2:
-            resp_uso = "Urbano/Interurbano"
+            respUso = "Urbano/Interurbano"
             break
         case 3:
-            resp_uso = "Offroad"
+            respUso = "Offroad"
             break
         case 4:
-            resp_uso = "Cargas"
+            respUso = "Cargas"
     }
 
-    opcionesElegidas.push(resp_uso)
+    opcionesElegidas.push(respUso)
 }
 
-function procesar_combustible(resp_combustible, opcionesElegidas) {
-    switch (resp_combustible) {
+function procesarCombustible(respCombustible, opcionesElegidas) {
+    switch (respCombustible) {
         case 1:
-            resp_combustible = "Nafta"
+            respCombustible = "Nafta"
             break
         case 2:
-            resp_combustible = "Diésel"
+            respCombustible = "Diésel"
             break
         case 3:
-            resp_combustible = "Eléctrico"
+            respCombustible = "Eléctrico"
             break
         case 4:
-            resp_combustible = "Híbrido"
+            respCombustible = "Híbrido"
     }
 
-    opcionesElegidas.push(resp_combustible)
+    opcionesElegidas.push(respCombustible)
 }
 
-function procesar_pasajeros(resp_pasajeros, opcionesElegidas) {
-    switch (resp_pasajeros) {
+function procesarPasajeros(respPasajeros, opcionesElegidas) {
+    switch (respPasajeros) {
         case 1:
-            resp_pasajeros = "1 ó 2"
+            respPasajeros = "1 ó 2"
             break
         case 2:
-            resp_pasajeros = "Hasta 4 (inclusive) (o 5 si el quinto es niño)"
+            respPasajeros = "Hasta 4 (inclusive) (o 5 si el quinto es niño)"
             break
         case 3:
-            resp_pasajeros = "Hasta 5"
+            respPasajeros = "Hasta 5"
             break
         case 4:
-            resp_pasajeros = "Más de 5"
+            respPasajeros = "Más de 5"
     }
 
-    opcionesElegidas.push(resp_pasajeros)
+    opcionesElegidas.push(respPasajeros)
 }
 
-//creación y muestra de resultados
+//creación y muestra de resultados por consola
 
 function crearResultados(opcionesElegidasString, autos) {
     let resultados = []
@@ -162,22 +162,31 @@ autos.push(new Auto("Peugeot", "Partner Confort", "Urbano/Interurbano Cargas", "
 autos.push(new Auto("Ford", "Ranger", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
 autos.push(new Auto("Volkswagwen", "Tiguan Allspace", "Urbano/Interurbano Offroad", "Nafta", "Más de 5"))
 autos.push(new Auto("Toyota", "Etios", "Urbano", "Nafta", "1 ó 2"))
+
 //invocaciones
 
-let inputUso = inputUsuario_uso()
-let inputCombustible = inputUsuario_combustible()
-let inputPasajeros = inputUsuario_pasajeros()
-procesar_uso(inputUso, opcionesElegidas)
-procesar_combustible(inputCombustible, opcionesElegidas)
-procesar_pasajeros(inputPasajeros, opcionesElegidas)
+let inputUso = inputUsuarioUso()
+let inputCombustible = inputUsuarioCombustible()
+let inputPasajeros = inputUsuarioPasajeros()
+procesarUso(inputUso, opcionesElegidas)
+procesarCombustible(inputCombustible, opcionesElegidas)
+procesarPasajeros(inputPasajeros, opcionesElegidas)
 let opcionesElegidasString = opcionesElegidas.join(" ")
 let resultados = crearResultados(opcionesElegidasString, autos)
 mostrarResultados(resultados)
 
+//muestra de resultados y opciones elegidas en la página
 
 let escribirResultados = document.getElementById("resultados")
 for (let i = 0; i < resultados.length; i++)
 escribirResultados.innerHTML += `<p>${resultados[i]}</p>`
+
+let escribirOpcionesElegidas = document.createElement("article")
+escribirOpcionesElegidas.innerHTML = opcionesElegidasString
+escribirOpcionesElegidas.setAttribute("id", "opcionesElegidas")
+escribirOpcionesElegidas.className = "row"
+escribirResultados.insertAdjacentElement("afterend", escribirOpcionesElegidas)
+
 
 
 
