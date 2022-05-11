@@ -1,8 +1,88 @@
 //presentación
 
 function saludar() {
-    console.log("¡Hola! Te voy a ayudar a elegir tu próximo auto.\n¡Empecemos!")
+    console.log("¡Hola! Te voy a ayudar a elegir la clase de personaje en un juego estilo MOBA.\n¡Empecemos!")
 }
+
+
+class Personaje {
+    constructor(clase, descripcion) {
+        this.clase = clase
+        this.descripcion = descripcion
+        this.puntaje = 0
+        this.imagen = ""
+        this.simbolo = ""
+    }
+}
+
+let guerrero = new Personaje("Guerrero", "Ataque cuerpo a cuerpo, aguante y movilidad destacables")
+let mago = new Personaje("Mago", "Causa gran daño mágico a distancia con habilidades y posee buen control de masas, aunque lento y con pocas defensas.")
+let soporte = new Personaje("Soporte", "Cuida de su equipo otorgándoles recursos como escudos, curaciones y mejoras de atributos, y mantiene a raya al equipo enemigo con efectos de control. Buena movilidad. Daño escaso, pierde utilidad solo.")
+let tirador = new Personaje("Tirador", "Principal fuente de daño del equipo. Revienta a sus objetivos con ataques básicos rápidos a distancia. Movilidad escasa y muy vulnerable.")
+let asesino = new Personaje("Asesino", "Daño explosivo, movilidad extrema. Debe asegurarse de poder diezmar rápido a su objetivo porque de lo contrario él se volverá la víctima.")
+let tanque = new Personaje("Tanque", "Trata de absorber la mayor cantidad de daño posible por su equipo gracias a su elevada durabilidad. Muy buen control de masas. Habilidades lentas, poco daño cuerpo a cuerpo.")
+
+let puntajes = []
+
+puntajes.push(guerrero.puntaje)
+puntajes.push(mago.puntaje)
+puntajes.push(soporte.puntaje)
+puntajes.push(tirador.puntaje)
+puntajes.push(asesino.puntaje)
+puntajes.push(tanque.puntaje)
+
+
+function inputJuegoEquipo() {
+    let opcionJuegoEquipo = document.querySelector('input[name="radioJuegoEquipo"]:checked').value;
+    opcionJuegoEquipo.onchange = () => {
+            switch (opcionJuegoEquipo) {
+                case "opcion1":
+                    puntajes[0] += 5
+                    puntajes[1] += 2
+                    puntajes[2] += 1
+                    puntajes[3] += 2
+                    puntajes[4] += 4
+                    puntajes[5] += 3
+                    break
+                case "opcion2":
+                    puntajes[0] += 2
+                    puntajes[1] += 4
+                    puntajes[2] += 3
+                    puntajes[3] += 4
+                    puntajes[4] += 4
+                    puntajes[5] += 4
+                    break
+                case "opcion3":
+                    puntajes[0] += 2
+                    puntajes[1] += 5
+                    puntajes[2] += 2
+                    puntajes[3] += 5
+                    puntajes[4] += 3
+                    puntajes[5] += 2
+                    break
+                case "opcion4":
+                    puntajes[0] += 2
+                    puntajes[1] += 2
+                    puntajes[2] += 5
+                    puntajes[3] += 1
+                    puntajes[4] += 1
+                    puntajes[5] += 3
+            }
+        }
+}
+
+inputJuegoEquipo()
+console.group(puntajes)
+
+
+
+
+
+
+
+
+
+
 
 //pedido de datos
 
@@ -165,6 +245,7 @@ autos.push(new Auto("Toyota", "Etios", "Urbano", "Nafta", "1 ó 2"))
 
 //invocaciones
 
+saludar()
 let inputUso = inputUsuarioUso()
 let inputCombustible = inputUsuarioCombustible()
 let inputPasajeros = inputUsuarioPasajeros()

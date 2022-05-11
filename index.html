@@ -44,72 +44,73 @@
 
     </header>
     <main class="row">
-        <article class="col-md-4">
-            <section>
-                <h6>¿Qué uso mayoritario le vas a dar? (Podés seleccionar más de una opción)</h6>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxUso_Urbano">
-                    <label class="form-check-label" for="cboxUso_Urbano">Urbano</label>
+        <form action="">
+            <article id="preguntaJuegoEquipo">
+                <div class="form-check">
+                    <h6>En cuanto al juego en equipo:</h6>
+                    <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion1" checked="" value="opcion1">
+                    <label class="form-check-label" for="juegoEquipoOpcion1">Quiero conservar la mayor independencia
+                        posible en los distintos escenarios que surjan, más allá de lo que pueda aportar o no.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxUso_UrbanoInterurbano" checked>
-                    <label class="form-check-label" for="cboxUso_UrbanoInterurbano">Urbano/Interurbano</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion2" value="opcion2">
+                    <label class="form-check-label" for="juegoEquipoOpcion2">Prefiero un equilibrio entre la
+                        autosuficiencia y mi necesidad de los demás, así se maximizan los beneficios en el plano grupal
+                        e individual.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxUso_Offroad" checked>
-                    <label class="form-check-label" for="cboxUso_Offroad">Offroad</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion3" value="opcion3">
+                    <label class="form-check-label" for="juegoEquipoOpcion3">Si sé que mi equipo me apoya, serán
+                        retribuidos en gran manera.</label>
+
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxUso_Cargas" checked>
-                    <label class="form-check-label" for="cboxUso_Cargas">Cargas</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion4" value="opcion4">
+                    <label class="form-check-label" for="juegoEquipoOpcion4">Me gusta ayudar y aunque mis aportes no
+                        reluzcan a simple vista, sin mí seguramente la historia sería distinta.</label>
                 </div>
-            </section>
-            <section>
-                <h6>¿Con qué combustible/energía se impulsará? (Podés seleccionar más de una opción)</h6>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxCombustible_Nafta">
-                    <label class="form-check-label" for="cboxCombustible_Nafta">Nafta</label>
+            </article>
+            <article>
+                <div class="form-check">
+                    <h6>Cuando se trata de desarmar al enemigo, mi principal objetivo es:</h6>
+                    <input class="form-check-input" type="radio" name="radioDesarmarEnemigo" id="desarmarEnemigoOpcion1" checked="" value="opcion1">
+                    <label class="form-check-label" for="desarmarEnemigoOpcion1">Herir lo que sea que esté a mi
+                        alcance.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxCombustible_Diesel" checked>
-                    <label class="form-check-label" for="cboxCombustible_Diesel">Diésel</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioDesarmarEnemigo" id="desarmarEnemigoOpcion2" value="opcion2">
+                    <label class="form-check-label" for="desarmarEnemigoOpcion2">Dejarlos sin posibilidades de actuar.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxCombustible_Hibrido" checked>
-                    <label class="form-check-label" for="cboxCombustible_Hibrido">Híbrido</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioDesarmarEnemigo" id="desarmarEnemigoOpcion3" value="opcion3">
+                    <label class="form-check-label" for="desarmarEnemigoOpcion3">Detectar debilidades y aniquilarlas.</label>
+
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxCombustible_Electrico" checked>
-                    <label class="form-check-label" for="cboxCombustible_Electrico">Eléctrico</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioDesarmarEnemigo" id="desarmarEnemigoOpcion4" value="opcion4">
+                    <label class="form-check-label" for="desarmarEnemigoOpcion4">Meterse de lleno en la batalla y abrir
+                        brechas.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxCombustible_Indistinto" checked>
-                    <label class="form-check-label" for="cboxCombustible_Indistinto">Indistinto</label>
+            </article>
+            <article>
+                <div class="form-check">
+                    <h6>Mi relación con el daño en el juego:</h6>
+                    <input class="form-check-input" type="radio" name="radioRelacionDaño" id="relacionDañoOpcion1" checked="" value="opcion1">
+                    <label class="form-check-label" for="relacionDañoOpcion1">Cuanto más a salvo posible de él me
+                        encuentre, más podré redoblárselo al enemigo.</label>
                 </div>
-            </section>
-            <section>
-                <h6>¿Cuántos pasajeros viajarán habitualmente?</h6>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxPasajeros_1o2">
-                    <label class="form-check-label" for="cboxPasajeros_1o2">1 ó 2</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioRelacionDaño" id="relacionDañoOpcion2" value="opcion2">
+                    <label class="form-check-label" for="relacionDañoOpcion2">El riesgo cuando lo ocasiono es grande, pero
+                        así mismo es la recompensa si soy exitoso</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxPasajeros_Hasta4" checked>
-                    <label class="form-check-label" for="cboxPasajeros_Hasta4">Hasta 4 (inclusive) (o 5 si el quinto es
-                        niño)</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioRelacionDaño" id="relacionDañoOpcion3" value="opcion3">
+                    <label class="form-check-label" for="relacionDañoOpcion3">Si se atreven a meterse conmigo, sabrán lo
+                        que les espera.</label>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxPasajeros_Hasta5" checked>
-                    <label class="form-check-label" for="cboxPasajeros_Hasta5">Hasta 5 (inclusive)</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="cboxPasajeros_MasDe5" checked>
-                    <label class="form-check-label" for="cboxPasajeros_MasDe5">Más de 5</label>
-                </div>
-            </section>
-        </article>
-        <article id="resultados" class="col-md-8"></article>
-        <article id="opcionesElegidas" class="row"></article>
+            </article>
+        </form>
     </main>
     <footer class="row">
 
