@@ -4,6 +4,7 @@ function saludar() {
     console.log("¡Hola! Te voy a ayudar a elegir la clase de personaje en un juego estilo MOBA.\n¡Empecemos!")
 }
 
+//Clase, arrays y objetos
 
 class Personaje {
     constructor(clase, descripcion) {
@@ -22,6 +23,8 @@ let tirador = new Personaje("Tirador", "Principal fuente de daño del equipo. Re
 let asesino = new Personaje("Asesino", "Daño explosivo, movilidad extrema. Debe asegurarse de poder diezmar rápido a su objetivo porque de lo contrario él se volverá la víctima.")
 let tanque = new Personaje("Tanque", "Trata de absorber la mayor cantidad de daño posible por su equipo gracias a su elevada durabilidad. Muy buen control de masas. Habilidades lentas, poco daño cuerpo a cuerpo.")
 
+let clases = [guerrero, mago, soporte, tirador, asesino, tanque]
+
 let puntajes = []
 
 puntajes.push(guerrero.puntaje)
@@ -31,242 +34,219 @@ puntajes.push(tirador.puntaje)
 puntajes.push(asesino.puntaje)
 puntajes.push(tanque.puntaje)
 
+//Procesar encuestas
 
-function inputJuegoEquipo() {
-    let opcionJuegoEquipo = document.querySelector('input[name="radioJuegoEquipo"]:checked').value;
-    opcionJuegoEquipo.onchange = () => {
-            switch (opcionJuegoEquipo) {
-                case "opcion1":
-                    puntajes[0] += 5
-                    puntajes[1] += 2
-                    puntajes[2] += 1
-                    puntajes[3] += 2
-                    puntajes[4] += 4
-                    puntajes[5] += 3
-                    break
-                case "opcion2":
-                    puntajes[0] += 2
-                    puntajes[1] += 4
-                    puntajes[2] += 3
-                    puntajes[3] += 4
-                    puntajes[4] += 4
-                    puntajes[5] += 4
-                    break
-                case "opcion3":
-                    puntajes[0] += 2
-                    puntajes[1] += 5
-                    puntajes[2] += 2
-                    puntajes[3] += 5
-                    puntajes[4] += 3
-                    puntajes[5] += 2
-                    break
-                case "opcion4":
-                    puntajes[0] += 2
-                    puntajes[1] += 2
-                    puntajes[2] += 5
-                    puntajes[3] += 1
-                    puntajes[4] += 1
-                    puntajes[5] += 3
-            }
-        }
-}
+const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
+    console.log("Cambio!")
+    console.log(e.target.value)
 
-inputJuegoEquipo()
-console.group(puntajes)
-
-
-
-
-
-
-
-
-
-
-
-//pedido de datos
-
-function inputUsuarioUso() {
-    console.log("¿Qué uso mayoritario le vas a dar? (Podés seleccionar más de una opción)")
-
-    do {
-        respUso = parseInt(prompt("1) Urbano \n2) Urbano/Interurbano \n3) Offroad \n4) Cargas"))
-
-        if ((respUso < 1) || (respUso > 4) || (!Number.isInteger(respUso)))
-            alert("Ingrese una opción correcta")
-
-    } while (respUso < 1 || respUso > 4 || isNaN(respUso))
-
-    return(respUso)
-}
-
-function inputUsuarioCombustible() {
-    console.log("¿Con qué combustible/energía se impulsará? (Podés seleccionar más de una opción)")
-
-    do {
-        respCombustible = parseInt(prompt("1) Nafta\n 2) Diésel \n3) Eléctrico \n4) Híbrido \n5) Indistinto"))
-
-        if ((respCombustible < 1) || (respCombustible > 5) || (!Number.isInteger(respCombustible)))
-            alert("Ingrese una opción correcta")
-
-    } while (respCombustible < 1 || respCombustible > 5 || isNaN(respCombustible))
-
-    return(respCombustible)
-}
-
-function inputUsuarioPasajeros() {
-    console.log("¿Cuántos pasajeros viajarán habitualmente?")
-
-    do {
-        respPasajeros = parseInt(prompt("1) 1 ó 2 \n 2) Hasta 4 (inclusive) (o 5 si el quinto es niño) \n3) Hasta 5 (inclusive) \n4) Más de 5"))
-
-        if ((respPasajeros < 1) || (respPasajeros > 4) || (!Number.isInteger(respPasajeros)))
-            alert("Ingrese una opción correcta")
-
-    } while (respPasajeros < 1 || respPasajeros > 4 || isNaN(respPasajeros))
-
-    return(respPasajeros)
-}
-
-// asignaciones de datos pedidos
-
-function procesarUso(respUso, opcionesElegidas) {
-    switch (respUso) {
-        case 1:
-            respUso = "Urbano"
+    switch (e.target.value) {
+        case "opcion1": //Quiero conservar la mayor independencia posible en los distintos escenarios que surjan, más allá de lo que pueda aportar o no.
+            puntajes[0] += 5
+            puntajes[1] += 2
+            puntajes[2] += 1
+            puntajes[3] += 2
+            puntajes[4] += 4
+            puntajes[5] += 3
             break
-        case 2:
-            respUso = "Urbano/Interurbano"
+        case "opcion2": //Prefiero un equilibrio entre la autosuficiencia y mi necesidad de los demás, así se maximizan los beneficios en el plano grupal e individual.
+            puntajes[0] += 2
+            puntajes[1] += 4
+            puntajes[2] += 3
+            puntajes[3] += 4
+            puntajes[4] += 4
+            puntajes[5] += 4
             break
-        case 3:
-            respUso = "Offroad"
+        case "opcion3": //Si sé que mi equipo me apoya, serán retribuidos en gran manera.
+            puntajes[0] += 2
+            puntajes[1] += 5
+            puntajes[2] += 2
+            puntajes[3] += 5
+            puntajes[4] += 3
+            puntajes[5] += 2
             break
-        case 4:
-            respUso = "Cargas"
+        case "opcion4": //Me gusta ayudar y aunque mis aportes no reluzcan a simple vista, sin mí seguramente la historia sería distinta.
+            puntajes[0] += 2
+            puntajes[1] += 2
+            puntajes[2] += 5
+            puntajes[3] += 1
+            puntajes[4] += 1
+            puntajes[5] += 3
     }
 
-    opcionesElegidas.push(respUso)
+    for (let i = 1; i < 5; i++)
+        document.getElementById(`juegoEquipoOpcion${i}`).disabled = true
+
+    console.group(puntajes)
+    crearResultado()
 }
 
-function procesarCombustible(respCombustible, opcionesElegidas) {
-    switch (respCombustible) {
-        case 1:
-            respCombustible = "Nafta"
+const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemigo, mi principal objetivo es:
+    console.log("Cambio!")
+    console.log(e.target.value)
+
+    switch (e.target.value) {
+        case "opcion1": //Herir lo que sea que esté a mi alcance.
+            puntajes[0] += 3
+            puntajes[1] += 4
+            puntajes[2] += 2
+            puntajes[3] += 5
+            puntajes[4] += 2
+            puntajes[5] += 2
             break
-        case 2:
-            respCombustible = "Diésel"
+        case "opcion2": //Dejarlos sin posibilidades de actuar.
+            puntajes[0] += 2
+            puntajes[1] += 3
+            puntajes[2] += 5
+            puntajes[3] += 1
+            puntajes[4] += 2
+            puntajes[5] += 4
             break
-        case 3:
-            respCombustible = "Eléctrico"
+        case "opcion3": //Detectar debilidades y explotarlas.
+            puntajes[0] += 2
+            puntajes[1] += 3
+            puntajes[2] += 4
+            puntajes[3] += 2
+            puntajes[4] += 5
+            puntajes[5] += 4
             break
-        case 4:
-            respCombustible = "Híbrido"
+        case "opcion4": //Abrir brechas y meterse de lleno en la batalla.
+            puntajes[0] += 3
+            puntajes[1] += 1
+            puntajes[2] += 3
+            puntajes[3] += 1
+            puntajes[4] += 3
+            puntajes[5] += 5
     }
 
-    opcionesElegidas.push(respCombustible)
+    for (let i = 1; i < 5; i++)
+        document.getElementById(`desarmarEnemigoOpcion${i}`).disabled = true
+
+    console.group(puntajes)
+    crearResultado()
 }
 
-function procesarPasajeros(respPasajeros, opcionesElegidas) {
-    switch (respPasajeros) {
-        case 1:
-            respPasajeros = "1 ó 2"
+const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
+    console.log("Cambio!")
+    console.log(e.target.value)
+
+    switch (e.target.value) {
+        case "opcion1": //Cuanto más a salvo posible de él me encuentre, más podré redoblárselo al enemigo.
+            puntajes[0] += 2
+            puntajes[1] += 4
+            puntajes[2] += 1
+            puntajes[3] += 5
+            puntajes[4] += 3
+            puntajes[5] += 1
             break
-        case 2:
-            respPasajeros = "Hasta 4 (inclusive) (o 5 si el quinto es niño)"
+        case "opcion2": //El riesgo cuando lo ocasiono es grande, pero así mismo es la recompensa si soy exitoso.
+            puntajes[0] += 2
+            puntajes[1] += 3
+            puntajes[2] += 5
+            puntajes[3] += 1
+            puntajes[4] += 2
+            puntajes[5] += 4
             break
-        case 3:
-            respPasajeros = "Hasta 5"
-            break
-        case 4:
-            respPasajeros = "Más de 5"
+        case "opcion3": //Si se atreven a meterse conmigo, sabrán lo que les espera.
+            puntajes[0] += 2
+            puntajes[1] += 3
+            puntajes[2] += 4
+            puntajes[3] += 2
+            puntajes[4] += 5
+            puntajes[5] += 4
     }
 
-    opcionesElegidas.push(respPasajeros)
+    for (let i = 1; i < 4; i++)
+        document.getElementById(`relacionDañoOpcion${i}`).disabled = true
+
+    console.group(puntajes)
+    crearResultado()
 }
 
-//creación y muestra de resultados por consola
+//Manejo resultados
 
-function crearResultados(opcionesElegidasString, autos) {
-    let resultados = []
-    let resultadoPosible = []
+function crearResultado() {
+    let puntajeGanador = Math.max(...puntajes)
+    let indiceClaseGanadora = puntajes.indexOf(puntajeGanador)
 
-    for(let i = 0; i < autos.length; i++) {
-        let usoString = autos[i].uso
-        resultadoPosible.push(usoString)
-        let combustibleString = autos[i].combustible
-        resultadoPosible.push(combustibleString)
-        let pasajerosString = autos[i].pasajeros
-        resultadoPosible.push(pasajerosString)
+    console.log(puntajeGanador)
+    console.log(clases[indiceClaseGanadora].clase)
 
-        if (opcionesElegidasString == resultadoPosible.join(" ")) {
-            let autoString = `${autos[i].marca} ${autos[i].modelo}`
-            resultados.push(autoString)
-        }
-        else {
-            resultadoPosible.length = 0
-            usoString = ""
-            combustibleString = ""
-            pasajerosString = ""
-        }
-    }
-
-    return (resultados)
+    return (clases[indiceClaseGanadora])
 }
 
-function mostrarResultados(resultados) {
-    console.log(resultados)
+function mostrarResultado(res) {
+    console.log(res.clase)
+    let tituloCard = document.getElementById("tituloCard")
+    tituloCard.innerText = res.clase
+    let textoCard = document.getElementById("textoCard")
+    textoCard.innerText = res.descripcion
+    document.getElementById("cardResultado").style.visibility = 'visible'
 }
 
-//clases, objetos y arrays
 
-class Auto {
-    constructor(marca, modelo, uso = [], combustible = [], pasajeros) {
-        this.marca = marca
-        this.modelo = modelo
-        this.uso = uso
-        this.combustible = combustible
-        this.pasajeros = pasajeros
-    }
+// document.querySelectorAll("input[type='radio']").forEach((x) => {
+//         if (x.disabled == true /*&& si es el ultimo elemento de la lista*/) {
+//             let resultado = crearResultado()
+//             mostrarResultado(resultado)
+//         }
+// })
+
+// let array = document.querySelectorAll("input[type='radio']")
+// for (let valor of array) {
+//     let i
+//     if (valor.disabled == true) {
+//         i++
+//         console.log("Probando")
+//     }
+//     if (i == array.length-1) {
+//         let resultado = crearResultado()
+//         mostrarResultado(resultado)
+//     }
+// }
+
+//Resetear encuesta
+
+function resetear() {
+    for (let i = 0; i < puntajes.length; i++)
+        puntajes[i] = 0
+    console.log(puntajes)
+
+    // for (let valor of puntajes)
+    //     valor = 0
+    // console.log(puntajes)
+
+    let inputs = document.querySelectorAll("input[type='radio']")
+    for (let valor2 of inputs) {
+        valor2.disabled = false
+        valor2.checked = false 
+    }  
 }
 
-const opcionesElegidas = []
-const autos = []
+//Eventos
 
-autos.push(new Auto("Volkswagwen", "Taos", "Urbano/Interurbano Offroad", "Nafta", "Hasta 5"))
-autos.push(new Auto("Chevrolet", "Cruze", "Urbano/Interurbano", "Nafta", "Hasta 5"))   
-autos.push(new Auto("Toyota", "Corolla", "Urbano/Interurbano", "Nafta Híbrido", "Hasta 5"))
-autos.push(new Auto("Toyota", "Corolla Cross", "Urbano/Interurbano Offroad", "Nafta Híbrido", "Hasta 5"))
-autos.push(new Auto("Ford", "Ka", "Urbano", "Nafta", "1 ó 2"))
-autos.push(new Auto("Peugeot", "Partner Patagónica", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
-autos.push(new Auto("Peugeot", "Partner Confort", "Urbano/Interurbano Cargas", "Nafta Diésel", "1 ó 2"))
-autos.push(new Auto("Ford", "Ranger", "Urbano/Interurbano Offroad Cargas", "Nafta Diésel", "Hasta 5"))
-autos.push(new Auto("Volkswagwen", "Tiguan Allspace", "Urbano/Interurbano Offroad", "Nafta", "Más de 5"))
-autos.push(new Auto("Toyota", "Etios", "Urbano", "Nafta", "1 ó 2"))
+document.querySelectorAll("input[name='radioJuegoEquipo']").forEach((input) => {
+    input.addEventListener('change', procesarJuegoEquipo)
+})
 
-//invocaciones
+document.querySelectorAll("input[name='radioDesarmarEnemigo']").forEach((input) => {
+    input.addEventListener('change', procesarDesarmarEnemigo)
+})
 
-saludar()
-let inputUso = inputUsuarioUso()
-let inputCombustible = inputUsuarioCombustible()
-let inputPasajeros = inputUsuarioPasajeros()
-procesarUso(inputUso, opcionesElegidas)
-procesarCombustible(inputCombustible, opcionesElegidas)
-procesarPasajeros(inputPasajeros, opcionesElegidas)
-let opcionesElegidasString = opcionesElegidas.join(" ")
-let resultados = crearResultados(opcionesElegidasString, autos)
-mostrarResultados(resultados)
+document.querySelectorAll("input[name='radioRelacionDaño']").forEach((input) => {
+    input.addEventListener('change', procesarRelacionDaño)
+})
 
-//muestra de resultados y opciones elegidas en la página
+document.getElementById("botonReset").addEventListener('click', resetear)
 
-let escribirResultados = document.getElementById("resultados")
-for (let i = 0; i < resultados.length; i++)
-escribirResultados.innerHTML += `<p>${resultados[i]}</p>`
 
-let escribirOpcionesElegidas = document.createElement("article")
-escribirOpcionesElegidas.innerHTML = opcionesElegidasString
-escribirOpcionesElegidas.setAttribute("id", "opcionesElegidas")
-escribirOpcionesElegidas.className = "row"
-escribirResultados.insertAdjacentElement("afterend", escribirOpcionesElegidas)
+
+// let resultado = crearResultado()
+// mostrarResultado(resultado)
+
+
+
+
 
 
 
