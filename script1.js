@@ -6,6 +6,8 @@ function saludar() {
 
 //Clase, arrays y objetos
 
+const nroPreguntas = 3
+
 class Personaje {
     constructor(clase, descripcion) {
         this.clase = clase
@@ -25,7 +27,12 @@ let tanque = new Personaje("Tanque", "Trata de absorber la mayor cantidad de da�
 
 let clases = [guerrero, mago, soporte, tirador, asesino, tanque]
 
+let radiosChecked = 0
+
 let puntajes = []
+let indicesClasesGanadoras = []
+
+
 
 puntajes.push(guerrero.puntaje)
 puntajes.push(mago.puntaje)
@@ -78,7 +85,9 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
         document.getElementById(`juegoEquipoOpcion${i}`).disabled = true
 
     console.group(puntajes)
+    radiosChecked++
     crearResultado()
+    console.log(radiosChecked)
 }
 
 const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemigo, mi principal objetivo es:
@@ -123,7 +132,9 @@ const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemig
         document.getElementById(`desarmarEnemigoOpcion${i}`).disabled = true
 
     console.group(puntajes)
+    radiosChecked++
     crearResultado()
+    console.log(radiosChecked)
 }
 
 const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
@@ -142,10 +153,10 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
         case "opcion2": //El riesgo cuando lo ocasiono es grande, pero así mismo es la recompensa si soy exitoso.
             puntajes[0] += 2
             puntajes[1] += 3
-            puntajes[2] += 5
-            puntajes[3] += 1
-            puntajes[4] += 2
-            puntajes[5] += 4
+            puntajes[2] += 2
+            puntajes[3] += 2
+            puntajes[4] += 5
+            puntajes[5] += 1
             break
         case "opcion3": //Si se atreven a meterse conmigo, sabrán lo que les espera.
             puntajes[0] += 2
@@ -160,7 +171,9 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
         document.getElementById(`relacionDañoOpcion${i}`).disabled = true
 
     console.group(puntajes)
+    radiosChecked++
     crearResultado()
+    console.log(radiosChecked)
 }
 
 //Manejo resultados
@@ -171,39 +184,46 @@ function crearResultado() {
 
     console.log(puntajeGanador)
     console.log(clases[indiceClaseGanadora].clase)
+    console.log(radiosChecked)
 
-    return (clases[indiceClaseGanadora])
+    //if (radiosChecked == nroPreguntas)
+    //mostrarResultado(clases[indiceClaseGanadora])
+    if (radiosChecked == nroPreguntas) {
+        let i = -1
+        while ((i = puntajes.indexOf(puntajeGanador, i+1)) != -1)
+            indicesClasesGanadoras.push(i)
+        
+        console.log(indicesClasesGanadoras)
+
+        //if (radiosChecked == nroPreguntas)
+        mostrarResultado(indicesClasesGanadoras)
+    }
+
 }
 
-function mostrarResultado(res) {
-    console.log(res.clase)
-    let tituloCard = document.getElementById("tituloCard")
-    tituloCard.innerText = res.clase
-    let textoCard = document.getElementById("textoCard")
-    textoCard.innerText = res.descripcion
-    document.getElementById("cardResultado").style.visibility = 'visible'
-}
-
-
-// document.querySelectorAll("input[type='radio']").forEach((x) => {
-//         if (x.disabled == true /*&& si es el ultimo elemento de la lista*/) {
-//             let resultado = crearResultado()
-//             mostrarResultado(resultado)
-//         }
-// })
-
-// let array = document.querySelectorAll("input[type='radio']")
-// for (let valor of array) {
-//     let i
-//     if (valor.disabled == true) {
-//         i++
-//         console.log("Probando")
-//     }
-//     if (i == array.length-1) {
-//         let resultado = crearResultado()
-//         mostrarResultado(resultado)
-//     }
+// function mostrarResultado(res) {
+//     console.log(res.clase)
+//     let tituloCard = document.getElementById("tituloCard")
+//     tituloCard.innerText = res.clase
+//     let textoCard = document.getElementById("textoCard")
+//     textoCard.innerText = res.descripcion
+//     document.getElementById("cardResultado").style.visibility = 'visible'
 // }
+
+function mostrarResultado(indices) {
+    let i = 0
+    while (i < indices.length) {
+        console.log(clases[indices[i]].clase)
+        let tituloCard = document.getElementById(`tituloCard${i+1}`)
+        tituloCard.innerText = clases[indices[i]].clase
+        let textoCard = document.getElementById(`textoCard${i+1}`)
+        textoCard.innerText = clases[indices[i]].descripcion
+        document.getElementById(`cardResultado${i+1}`).style.visibility = 'visible'
+
+        i++
+    }
+}
+
 
 //Resetear encuesta
 
@@ -212,15 +232,21 @@ function resetear() {
         puntajes[i] = 0
     console.log(puntajes)
 
-    // for (let valor of puntajes)
-    //     valor = 0
-    // console.log(puntajes)
-
     let inputs = document.querySelectorAll("input[type='radio']")
     for (let valor2 of inputs) {
         valor2.disabled = false
         valor2.checked = false 
     }  
+
+    radiosChecked = 0
+    let j = 1
+    while (j <= indicesClasesGanadoras.length) {
+        document.getElementById(`cardResultado${j}`).style.visibility = 'hidden'
+        j++
+    }
+
+    indicesClasesGanadoras = []
+    //document.getElementById("cardResultado").style.visibility = 'hidden'
 }
 
 //Eventos
@@ -239,10 +265,6 @@ document.querySelectorAll("input[name='radioRelacionDaño']").forEach((input) =>
 
 document.getElementById("botonReset").addEventListener('click', resetear)
 
-
-
-// let resultado = crearResultado()
-// mostrarResultado(resultado)
 
 
 
