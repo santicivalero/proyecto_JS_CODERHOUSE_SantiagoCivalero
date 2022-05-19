@@ -1,9 +1,3 @@
-//presentación
-
-function saludar() {
-    console.log("¡Hola! Te voy a ayudar a elegir la clase de personaje en un juego estilo MOBA.\n¡Empecemos!")
-}
-
 //Clase, arrays y objetos
 
 const nroPreguntas = 3
@@ -44,8 +38,7 @@ puntajes.push(tanque.puntaje)
 //Procesar encuestas
 
 const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
-    console.log("Cambio!")
-    console.log(e.target.value)
+    console.log(`juegoEquipo: ${e.target.value}`)
 
     switch (e.target.value) {
         case "opcion1": //Quiero conservar la mayor independencia posible en los distintos escenarios que surjan, más allá de lo que pueda aportar o no.
@@ -84,15 +77,15 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
     for (let i = 1; i < 5; i++)
         document.getElementById(`juegoEquipoOpcion${i}`).disabled = true
 
+    console.log("puntajes:")
     console.group(puntajes)
     radiosChecked++
     crearResultado()
-    console.log(radiosChecked)
+    console.log(`radiosChecked: ${radiosChecked}`)
 }
 
 const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemigo, mi principal objetivo es:
-    console.log("Cambio!")
-    console.log(e.target.value)
+    console.log(`desarmarEnemigo: ${e.target.value}`)
 
     switch (e.target.value) {
         case "opcion1": //Herir lo que sea que esté a mi alcance.
@@ -131,15 +124,15 @@ const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemig
     for (let i = 1; i < 5; i++)
         document.getElementById(`desarmarEnemigoOpcion${i}`).disabled = true
 
+    console.log("puntajes:")
     console.group(puntajes)
     radiosChecked++
     crearResultado()
-    console.log(radiosChecked)
+    console.log(`radiosChecked: ${radiosChecked}`)
 }
 
 const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
-    console.log("Cambio!")
-    console.log(e.target.value)
+    console.log(`relacionDaño: ${e.target.value}`)
 
     switch (e.target.value) {
         case "opcion1": //Cuanto más a salvo posible de él me encuentre, más podré redoblárselo al enemigo.
@@ -170,10 +163,11 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
     for (let i = 1; i < 4; i++)
         document.getElementById(`relacionDañoOpcion${i}`).disabled = true
 
+    console.log("puntajes:")
     console.group(puntajes)
     radiosChecked++
     crearResultado()
-    console.log(radiosChecked)
+    console.log(`radiosChecked: ${radiosChecked}`)
 }
 
 //Manejo resultados
@@ -182,33 +176,20 @@ function crearResultado() {
     let puntajeGanador = Math.max(...puntajes)
     let indiceClaseGanadora = puntajes.indexOf(puntajeGanador)
 
-    console.log(puntajeGanador)
+    console.log(`puntajeGanador: ${puntajeGanador}`)
     console.log(clases[indiceClaseGanadora].clase)
-    console.log(radiosChecked)
 
-    //if (radiosChecked == nroPreguntas)
-    //mostrarResultado(clases[indiceClaseGanadora])
     if (radiosChecked == nroPreguntas) {
         let i = -1
-        while ((i = puntajes.indexOf(puntajeGanador, i+1)) != -1)
+        while ((i = puntajes.indexOf(puntajeGanador, i + 1)) != -1)
             indicesClasesGanadoras.push(i)
-        
+
+        console.log("indicesClasesGanadoras:")
         console.log(indicesClasesGanadoras)
 
-        //if (radiosChecked == nroPreguntas)
         mostrarResultado(indicesClasesGanadoras)
     }
-
 }
-
-// function mostrarResultado(res) {
-//     console.log(res.clase)
-//     let tituloCard = document.getElementById("tituloCard")
-//     tituloCard.innerText = res.clase
-//     let textoCard = document.getElementById("textoCard")
-//     textoCard.innerText = res.descripcion
-//     document.getElementById("cardResultado").style.visibility = 'visible'
-// }
 
 function mostrarResultado(indices) {
     let i = 0
@@ -235,8 +216,8 @@ function resetear() {
     let inputs = document.querySelectorAll("input[type='radio']")
     for (let valor2 of inputs) {
         valor2.disabled = false
-        valor2.checked = false 
-    }  
+        valor2.checked = false
+    }
 
     radiosChecked = 0
     let j = 1
@@ -246,8 +227,37 @@ function resetear() {
     }
 
     indicesClasesGanadoras = []
-    //document.getElementById("cardResultado").style.visibility = 'hidden'
 }
+
+
+//Cambiar vistas
+
+function cambiarVistaNormal() {
+    if (document.getElementById('estilosSketchy'))
+        document.getElementById('estilosSketchy').remove()
+
+    localStorage.setItem("estiloVista", "vistaNormal")
+}
+
+function cambiarVistaSketchy() {
+    if (!document.getElementById('estilosSketchy')) {
+        let link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.id = 'estilosSketchy'
+        link.href = 'bootstrap.min.css'
+        document.head.append(link)
+    }
+
+    localStorage.setItem("estiloVista", "vistaSketchy")
+}
+
+let vista = localStorage.getItem("estiloVista")
+
+if (vista == "vistaNormal")
+    cambiarVistaNormal()
+else
+    cambiarVistaSketchy()
+
 
 //Eventos
 
@@ -265,15 +275,6 @@ document.querySelectorAll("input[name='radioRelacionDaño']").forEach((input) =>
 
 document.getElementById("botonReset").addEventListener('click', resetear)
 
+document.getElementById("botonVistaNormal").addEventListener('click', cambiarVistaNormal)
 
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("botonVistaSketchy").addEventListener('click', cambiarVistaSketchy)
