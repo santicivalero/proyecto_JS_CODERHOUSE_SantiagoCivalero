@@ -82,6 +82,7 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
     radiosChecked++
     crearResultado()
     console.log(`radiosChecked: ${radiosChecked}`)
+    updateChart()
 }
 
 const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemigo, mi principal objetivo es:
@@ -129,6 +130,7 @@ const procesarDesarmarEnemigo = (e) => { //Cuando se trata de desarmar al enemig
     radiosChecked++
     crearResultado()
     console.log(`radiosChecked: ${radiosChecked}`)
+    updateChart()
 }
 
 const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
@@ -168,6 +170,7 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
     radiosChecked++
     crearResultado()
     console.log(`radiosChecked: ${radiosChecked}`)
+    updateChart()
 }
 
 //Manejo resultados
@@ -275,3 +278,50 @@ document.getElementById("botonReset").addEventListener('click', resetear)
 document.getElementById("botonVistaNormal").addEventListener('click', cambiarVistaNormal)
 
 document.getElementById("botonVistaSketchy").addEventListener('click', cambiarVistaSketchy)
+
+//Gráfico
+
+const data = {
+    labels: [
+      'Guerrero',
+      'Mago',
+      'Soporte',
+      'Tirador',
+      'Asesino',
+      'Tanque',
+    ],
+    datasets: [{
+      label: 'Clases',
+      data: puntajes,
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      pointBackgroundColor: 'rgb(255, 99, 132)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(255, 99, 132)'
+    }]
+  };
+
+const config = {
+    type: 'radar',
+    data: data,
+    options: {
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      }
+    },
+  };
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+
+function updateChart() {
+    myChart.data.datasets[1].data = puntajes
+    myChart.update();
+}
