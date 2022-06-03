@@ -206,6 +206,26 @@ function mostrarResultado(indices) {
 
         i++
     }
+
+    let j = 1
+    fetch('imagenes.json')
+    .then((res) => res.json())
+    .then((data) => {
+        data.forEach((item) => {
+            let k = 0
+            while (k < indices.length) {
+                let imagenRol = document.getElementById(`imagenRol${j}`)
+                if (item.indice == indices[k]) {
+                    imagenRol.innerHTML = `<img src=${item.imagen}>` 
+                    j++
+                    console.log("probando")
+                }
+                k++
+            }
+            document.getElementById(`imagenRol${j}`).style.display = 'block'
+            console.log("probando2")
+        })
+    })
 }
 
 //Resetear encuesta
@@ -228,16 +248,17 @@ function resetear() {
         j++
     }
 
+    for(let k = 1; k<=3; k++)
+        document.getElementById(`imagenRol${k}`).style.display = 'none'
+
     indicesClasesGanadoras = []
+    myChart.update()
 }
 
 
 //Cambiar vistas
 
 function cambiarVistaNormal() {
-    // if (document.getElementById('estilosSketchy'))
-    //     document.getElementById('estilosSketchy').remove()
-
     document.getElementById('estilosSketchy') && document.getElementById('estilosSketchy').remove()
 
     localStorage.setItem("estiloVista", "vistaNormal")
@@ -322,6 +343,7 @@ const myChart = new Chart(
 
 
 function updateChart() {
-    myChart.data.datasets[1].data = puntajes
-    myChart.update();
+    myChart.data.datasets[0].data = puntajes
+    myChart.update()
 }
+
