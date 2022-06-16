@@ -1,4 +1,21 @@
+/* Paleta de colores: https://colorhunt.co/palette/f47c7cef9f9ffad4d4fff2f2 */
+
+
 #cardResultado1, #cardResultado2, #cardResultado3  {
     visibility: hidden;
 }
 
+body {
+    background-image: linear-gradient(to bottom right, #FAD4D4, #FFF2F2);
+}
+
+.cards, .imagenes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.card {
+    background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
+}

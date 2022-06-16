@@ -1,14 +1,12 @@
 //Clase, arrays y objetos
 
-const nroPreguntas = 3
+const nroPreguntas = 4
 
 class Personaje {
     constructor(clase, descripcion) {
         this.clase = clase
         this.descripcion = descripcion
         this.puntaje = 0
-        this.imagen = ""
-        this.simbolo = ""
     }
 }
 
@@ -49,7 +47,7 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
             puntajes[4] += 4
             puntajes[5] += 3
             break
-        case "opcion2": //Prefiero un equilibrio entre la autosuficiencia y mi necesidad de los demás, así se maximizan los beneficios en el plano grupal e individual.
+        case "opcion2": //Prefiero un equilibrio entre la autosuficiencia y mi necesidad de los demás, lograr un balance en el plano grupal e individual.
             puntajes[0] += 2
             puntajes[1] += 4
             puntajes[2] += 3
@@ -65,7 +63,7 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
             puntajes[4] += 3
             puntajes[5] += 2
             break
-        case "opcion4": //Me gusta ayudar y aunque mis aportes no reluzcan a simple vista, sin mí seguramente la historia sería distinta.
+        case "opcion4": //Me gusta ayudar y aunque mis aportes no reluzcan a simple vista, son fundamentales para la victoria.
             puntajes[0] += 2
             puntajes[1] += 2
             puntajes[2] += 5
@@ -173,6 +171,38 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
     updateChart()
 }
 
+const procesarRangoAtaque = (e) => { //En cuanto al rango de ataque:
+    console.log(`rangoAtaque: ${e.target.value}`)
+
+    switch (e.target.value) {
+        case "opcion1": //Me gusta la idea de tener la posibilidad de atacar de lejos.
+            puntajes[0] += 2
+            puntajes[1] += 5
+            puntajes[2] += 3
+            puntajes[3] += 5
+            puntajes[4] += 2
+            puntajes[5] += 2
+            break
+        case "opcion2": //No tengo problema si sólo puedo atacar cuerpo a cuerpo.
+            puntajes[0] += 5
+            puntajes[1] += 2
+            puntajes[2] += 3
+            puntajes[3] += 2
+            puntajes[4] += 4
+            puntajes[5] += 5
+    }
+
+    for (let i = 1; i < 3; i++)
+        document.getElementById(`rangoAtaqueOpcion${i}`).disabled = true
+
+    console.log("puntajes:")
+    console.group(puntajes)
+    radiosChecked++
+    crearResultado()
+    console.log(`radiosChecked: ${radiosChecked}`)
+    updateChart()
+}
+
 //Manejo resultados
 
 function crearResultado() {
@@ -209,23 +239,27 @@ function mostrarResultado(indices) {
 
     let j = 1
     fetch('imagenes.json')
-    .then((res) => res.json())
-    .then((data) => {
-        data.forEach((item) => {
-            let k = 0
-            while (k < indices.length) {
-                let imagenRol = document.getElementById(`imagenRol${j}`)
-                if (item.indice == indices[k]) {
-                    imagenRol.innerHTML = `<img src=${item.imagen}>` 
-                    j++
-                    console.log("probando")
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach((item) => {
+                let k = 0
+                while (k < indices.length) {
+                    let imagenRol = document.getElementById(`imagenRol${j}`)
+                    if (item.indice == indices[k]) {
+                        imagenRol.innerHTML = `<img src=${item.imagen}>`
+                        j++
+                        console.log("probando")
+                    }
+                    k++
                 }
-                k++
-            }
-            document.getElementById(`imagenRol${j}`).style.display = 'block'
-            console.log("probando2")
+            })
         })
-    })
+    let l = 1
+    while (l < 4) {
+        document.getElementById(`imagenRol${l}`).style.display = 'flex'
+        console.log("probando2")
+        l++
+    }
 }
 
 //Resetear encuesta
@@ -248,7 +282,7 @@ function resetear() {
         j++
     }
 
-    for(let k = 1; k<=3; k++)
+    for (let k = 1; k <= 3; k++)
         document.getElementById(`imagenRol${k}`).style.display = 'none'
 
     indicesClasesGanadoras = []
@@ -294,6 +328,10 @@ document.querySelectorAll("input[name='radioRelacionDaño']").forEach((input) =>
     input.addEventListener('change', procesarRelacionDaño)
 })
 
+document.querySelectorAll("input[name='radioRangoAtaque']").forEach((input) => {
+    input.addEventListener('change', procesarRangoAtaque)
+})
+
 document.getElementById("botonReset").addEventListener('click', resetear)
 
 document.getElementById("botonVistaNormal").addEventListener('click', cambiarVistaNormal)
@@ -304,46 +342,45 @@ document.getElementById("botonVistaSketchy").addEventListener('click', cambiarVi
 
 const data = {
     labels: [
-      'Guerrero',
-      'Mago',
-      'Soporte',
-      'Tirador',
-      'Asesino',
-      'Tanque',
+        'Guerrero',
+        'Mago',
+        'Soporte',
+        'Tirador',
+        'Asesino',
+        'Tanque',
     ],
     datasets: [{
-      label: 'Clases',
-      data: puntajes,
-      fill: true,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
-      pointBackgroundColor: 'rgb(255, 99, 132)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(255, 99, 132)'
+        label: 'Clases',
+        data: puntajes,
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
     }]
-  };
+};
 
 const config = {
     type: 'radar',
     data: data,
     options: {
-      elements: {
-        line: {
-          borderWidth: 3
+        elements: {
+            line: {
+                borderWidth: 3
+            }
         }
-      }
     },
-  };
+};
 
 const myChart = new Chart(
     document.getElementById('myChart'),
     config
-  );
+);
 
 
 function updateChart() {
     myChart.data.datasets[0].data = puntajes
     myChart.update()
 }
-

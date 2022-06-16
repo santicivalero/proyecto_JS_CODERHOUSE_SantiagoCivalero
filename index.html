@@ -62,7 +62,7 @@
                         <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion2"
                             value="opcion2">
                         <label class="form-check-label" for="juegoEquipoOpcion2">Prefiero un equilibrio entre la
-                            autosuficiencia y mi necesidad de los demás, así se maximizan los beneficios en el plano
+                            autosuficiencia y mi necesidad de los demás, lograr un balance en el plano
                             grupal
                             e individual.</label>
                     </div>
@@ -77,7 +77,7 @@
                         <input class="form-check-input" type="radio" name="radioJuegoEquipo" id="juegoEquipoOpcion4"
                             value="opcion4">
                         <label class="form-check-label" for="juegoEquipoOpcion4">Me gusta ayudar y aunque mis aportes no
-                            reluzcan a simple vista, sin mí seguramente la historia sería distinta.</label>
+                            reluzcan a simple vista, son fundamentales para la victoria.</label>
                     </div>
                 </section>
                 <section>
@@ -126,8 +126,23 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="radioRelacionDaño" id="relacionDañoOpcion3"
                             value="opcion3">
-                        <label class="form-check-label" for="relacionDañoOpcion3">Si se meten conmigo, sabrán lo
+                        <label class="form-check-label" for="relacionDañoOpcion3">Si se acercan a mí, sabrán lo
                             que les espera.</label>
+                    </div>
+                </section>
+                <section>
+                    <div class="form-check">
+                        <h6>En cuanto al rango de ataque:</h6>
+                        <input class="form-check-input" type="radio" name="radioRangoAtaque" id="rangoAtaqueOpcion1"
+                            value="opcion1">
+                        <label class="form-check-label" for="rangoAtaqueOpcion1">Me gusta la idea de tener la
+                            posibilidad de atacar de lejos.</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioRangoAtaque" id="rangoAtaqueOpcion2"
+                            value="opcion2">
+                        <label class="form-check-label" for="rangoAtaqueOpcion2">No tengo problema si sólo puedo atacar
+                            cuerpo a cuerpo.</label>
                     </div>
                 </section>
             </form>
@@ -135,42 +150,43 @@
         <article id="botonReset">
             <button type="button" class="btn btn-primary">Resetear</button>
         </article>
-        <article class="row" id="cardResultado1">
-            <div class="card">
-                <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title" id="tituloCard1"></h5>
-                    <p class="card-text" id="textoCard1"> </p>
+        <article class="cards">
+            <section id="cardResultado1">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="tituloCard1"></h5>
+                        <p class="card-text" id="textoCard1"> </p>
 
+                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="row" id="cardResultado2">
-            <div class="card">
-                <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title" id="tituloCard2"></h5>
-                    <p class="card-text" id="textoCard2"> </p>
+            </section>
+            <section id="cardResultado2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="tituloCard2"></h5>
+                        <p class="card-text" id="textoCard2"> </p>
 
+                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="row" id="cardResultado3">
-            <div class="card">
-                <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title" id="tituloCard3"></h5>
-                    <p class="card-text" id="textoCard3"> </p>
+            </section>
+            <section id="cardResultado3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="tituloCard3"></h5>
+                        <p class="card-text" id="textoCard3"> </p>
 
+                    </div>
                 </div>
-            </div>
+            </section>
         </article>
+        <article class="imagenes">
         <div id="imagenRol1">
         </div>
         <div id="imagenRol2">
         </div>
         <div id="imagenRol3">
         </div>
+        </article>
         <div class="row">
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
