@@ -12,7 +12,7 @@ class Personaje {
 
 let guerrero = new Personaje("Guerrero", "Ataque cuerpo a cuerpo, aguante y movilidad destacables")
 let mago = new Personaje("Mago", "Causa gran daño mágico a distancia con habilidades y posee buen control de masas, aunque lento y con pocas defensas.")
-let soporte = new Personaje("Soporte", "Cuida de su equipo otorgándoles recursos como escudos, curaciones y mejoras de atributos, y mantiene a raya al equipo enemigo con efectos de control. Buena movilidad. Daño escaso, pierde utilidad solo.")
+let soporte = new Personaje("Soporte", "Cuida de su equipo otorgándoles recursos como escudos, curaciones y mejoras de atributos, y mantiene a raya al equipo enemigo con efectos de control. Daño escaso, pierde utilidad solo.")
 let tirador = new Personaje("Tirador", "Principal fuente de daño del equipo. Revienta a sus objetivos con ataques básicos rápidos a distancia. Movilidad escasa y muy vulnerable.")
 let asesino = new Personaje("Asesino", "Daño explosivo, movilidad extrema. Debe asegurarse de poder diezmar rápido a su objetivo porque de lo contrario él se volverá la víctima.")
 let tanque = new Personaje("Tanque", "Trata de absorber la mayor cantidad de daño posible por su equipo gracias a su elevada durabilidad. Muy buen control de masas. Habilidades lentas, poco daño cuerpo a cuerpo.")
@@ -51,7 +51,7 @@ const procesarJuegoEquipo = (e) => { //En cuanto al juego en equipo:
             puntajes[0] += 2
             puntajes[1] += 4
             puntajes[2] += 3
-            puntajes[3] += 4
+            puntajes[3] += 3
             puntajes[4] += 4
             puntajes[5] += 4
             break

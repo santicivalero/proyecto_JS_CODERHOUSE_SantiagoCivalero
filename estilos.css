@@ -9,11 +9,24 @@ body {
     background-image: linear-gradient(to bottom right, #FAD4D4, #FFF2F2);
 }
 
-.cards, .imagenes {
+main {
+    padding-top: 20px;
+}
+
+header {
+    background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
+}
+
+.cards, .imagenes, footer div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+}
+
+.botonVolverArriba {
+    border: 1px solid #F47C7C;
+    background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
 }
 
 .card {

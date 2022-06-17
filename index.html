@@ -13,8 +13,8 @@
     <!-- <link rel="stylesheet" href="bootstrap.min.css" id="estilosSketchy"> -->
 </head>
 
-<body class="container-fluid fondo">
-    <header class="row">
+<body class="container-fluid fondo" >
+    <header class="row" id="volverArriba">
         <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
             <!-- <div class="container-fluid">
                 <a class="navbar-brand" href="#">Navbar</a>
@@ -40,6 +40,8 @@
                     </form> -->
             <button type="button" class="btn btn-light" id="botonVistaNormal">Normal</button>
             <button type="button" class="btn btn-dark" id="botonVistaSketchy">Sketchy</button>
+            <button type="button" class="btn btn-primary" id="botonReset">Resetear</button>
+            
             </div>
             </div>
         </nav>
@@ -48,7 +50,7 @@
     </header>
     <main class="row">
         <article class="row">
-            <form>
+            <form class="col-md-9">
                 <section id="preguntaJuegoEquipo">
                     <div class="form-check">
                         <h6>En cuanto al juego en equipo:</h6>
@@ -146,10 +148,13 @@
                     </div>
                 </section>
             </form>
+            <div class="row grafico col-md-3">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
         </article>
-        <article id="botonReset">
+        <!-- <article id="botonReset">
             <button type="button" class="btn btn-primary">Resetear</button>
-        </article>
+        </article> -->
         <article class="cards">
             <section id="cardResultado1">
                 <div class="card">
@@ -180,19 +185,18 @@
             </section>
         </article>
         <article class="imagenes">
-        <div id="imagenRol1">
-        </div>
-        <div id="imagenRol2">
-        </div>
-        <div id="imagenRol3">
-        </div>
+            <div id="imagenRol1">
+            </div>
+            <div id="imagenRol2">
+            </div>
+            <div id="imagenRol3">
+            </div>
         </article>
-        <div class="row">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
     </main>
     <footer class="row">
-
+        <div>
+        <a class="btn btn-light botonVolverArriba" href="#volverArriba">Ir arriba</a>
+        </div>
     </footer>
 
 
