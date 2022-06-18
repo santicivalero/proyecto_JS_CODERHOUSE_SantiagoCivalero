@@ -1,4 +1,4 @@
-//Clase, arrays y objetos
+//Clase, arrays, objetos y variables y constantes globales
 
 const nroPreguntas = 4
 
@@ -135,7 +135,7 @@ const procesarRelacionDaño = (e) => { //Mi relación con el daño en el juego:
     console.log(`relacionDaño: ${e.target.value}`)
 
     switch (e.target.value) {
-        case "opcion1": //Cuanto más a salvo posible de él me encuentre, más podré redoblárselo al enemigo.
+        case "opcion1": //Cuanto más a salvo de él me encuentre, más podré redoblárselo al enemigo.
             puntajes[0] += 2
             puntajes[1] += 4
             puntajes[2] += 1
@@ -248,16 +248,18 @@ function mostrarResultado(indices) {
                     if (item.indice == indices[k]) {
                         imagenRol.innerHTML = `<img src=${item.imagen}>`
                         j++
-                        console.log("probando")
                     }
                     k++
                 }
             })
         })
+        .catch((error) => {
+            console.log(error)
+        })
+
     let l = 1
     while (l < 4) {
         document.getElementById(`imagenRol${l}`).style.display = 'flex'
-        console.log("probando2")
         l++
     }
 }
@@ -278,12 +280,22 @@ function resetear() {
     radiosChecked = 0
     let j = 1
     while (j <= indicesClasesGanadoras.length) {
-        document.getElementById(`cardResultado${j}`).style.visibility = 'hidden'
+        let cardResultado = document.getElementById(`cardResultado${j}`)
+        cardResultado.style.visibility = 'hidden'
+        cardResultado.innerHTML = `<div class="card">
+            <div class="card-body">
+                <h5 class="card-title" id="tituloCard${j}"></h5>
+                <p class="card-text" id="textoCard${j}"> </p>
+            </div>
+            </section>`
         j++
     }
 
-    for (let k = 1; k <= 3; k++)
-        document.getElementById(`imagenRol${k}`).style.display = 'none'
+    for (let k = 1; k <= 3; k++) {
+        let imagenRol = document.getElementById(`imagenRol${k}`)
+        imagenRol.style.display = 'none'
+        imagenRol.innerHTML = ""
+    }
 
     indicesClasesGanadoras = []
     myChart.update()
@@ -314,6 +326,7 @@ let vista = localStorage.getItem("estiloVista")
 
 vista == "vistaNormal" ? cambiarVistaNormal() : cambiarVistaSketchy()
 
+
 //Eventos
 
 document.querySelectorAll("input[name='radioJuegoEquipo']").forEach((input) => {
@@ -337,6 +350,9 @@ document.getElementById("botonReset").addEventListener('click', resetear)
 document.getElementById("botonVistaNormal").addEventListener('click', cambiarVistaNormal)
 
 document.getElementById("botonVistaSketchy").addEventListener('click', cambiarVistaSketchy)
+
+document.getElementById("botonOcultarMostrarGrafico").addEventListener('click', ocultarMostrarGrafico)
+
 
 //Gráfico
 
@@ -369,7 +385,7 @@ const config = {
         elements: {
             line: {
                 borderWidth: 3
-            }
+            },
         }
     },
 };
@@ -383,4 +399,10 @@ const myChart = new Chart(
 function updateChart() {
     myChart.data.datasets[0].data = puntajes
     myChart.update()
+}
+
+function ocultarMostrarGrafico() {
+    let grafico = document.getElementById('grafico')
+    let mostrado = grafico.style.visibility == 'visible' ? grafico.style.visibility = 'hidden' : grafico.style.visibility = 'visible'
+    this.innerHTML = (mostrado == 'visible') ? "Ocultar gráfico" : "Mostrar gráfico"
 }

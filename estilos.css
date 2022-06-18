@@ -17,6 +17,13 @@ header {
     background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
 .cards, .imagenes, footer div {
     display: flex;
     flex-direction: row;
@@ -24,11 +31,53 @@ header {
     justify-content: center;
 }
 
+button {
+    transition: transform 1s;
+}
+
+button:hover {
+    transform: scale(1.01);
+}
+
 .botonVolverArriba {
     border: 1px solid #F47C7C;
     background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#botonReset, #botonOcultarMostrarGrafico {
+    background-image: linear-gradient(to bottom right, #EF9F9F, #FFF2F2); 
+    color: black;
+    border-color: #EF9F9F;
+}
+
+.cards {
+    margin-top: 45px;
 }
 
 .card {
     background-image: linear-gradient(to bottom right, #F47C7C, #EF9F9F);
+}
+
+.imagenes {
+    margin-top: 20px;
+}
+
+.form-check-input:checked {
+    background-color: #F47C7C;
+    border-color: #F47C7C;
+}
+
+h6 {
+    text-decoration: underline;
+    margin-top: 15px;
+}
+
+.form-check-input {
+    transition: background-color 1s;
+}
+
+.form-check-input:hover {
+    background-color: #F47C7C;
 }

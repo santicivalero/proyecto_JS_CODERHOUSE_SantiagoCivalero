@@ -13,40 +13,17 @@
     <!-- <link rel="stylesheet" href="bootstrap.min.css" id="estilosSketchy"> -->
 </head>
 
-<body class="container-fluid fondo" >
+<body class="container-fluid fondo">
     <header class="row" id="volverArriba">
-        <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
-            <!-- <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLight"
-                    aria-controls="navbarLight" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse show" id="navbarLight">
-                    <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                    </form> -->
-            <button type="button" class="btn btn-light" id="botonVistaNormal">Normal</button>
-            <button type="button" class="btn btn-dark" id="botonVistaSketchy">Sketchy</button>
-            <button type="button" class="btn btn-primary" id="botonReset">Resetear</button>
-            
-            </div>
-            </div>
+        <nav class="navbar navbar-light">
+            <span><button type="button" class="btn btn-primary" id="botonReset">Resetear encuesta</button></span>
+            <span>
+                <h2>¿Cuál es tu clase en LOL?</h2>
+            </span>
+            <span><button type="button" class="btn btn-primary" id="botonOcultarMostrarGrafico">Ocultar gráfico</button>
+                <button type="button" class="btn btn-light" id="botonVistaNormal">Vista Normal</button>
+                <button type="button" class="btn btn-dark" id="botonVistaSketchy">Vista Sketchy</button></span>
         </nav>
-
-
     </header>
     <main class="row">
         <article class="row">
@@ -115,7 +92,7 @@
                         <h6>Mi relación con el daño en el juego:</h6>
                         <input class="form-check-input" type="radio" name="radioRelacionDaño" id="relacionDañoOpcion1"
                             value="opcion1">
-                        <label class="form-check-label" for="relacionDañoOpcion1">Cuanto más a salvo posible de él me
+                        <label class="form-check-label" for="relacionDañoOpcion1">Cuanto más a salvo de él me
                             encuentre, más podré redoblárselo al enemigo.</label>
                     </div>
                     <div class="form-check">
@@ -148,13 +125,10 @@
                     </div>
                 </section>
             </form>
-            <div class="row grafico col-md-3">
+            <div class="row col-md-3" id="grafico">
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         </article>
-        <!-- <article id="botonReset">
-            <button type="button" class="btn btn-primary">Resetear</button>
-        </article> -->
         <article class="cards">
             <section id="cardResultado1">
                 <div class="card">
@@ -195,12 +169,9 @@
     </main>
     <footer class="row">
         <div>
-        <a class="btn btn-light botonVolverArriba" href="#volverArriba">Ir arriba</a>
+            <a class="btn btn-light botonVolverArriba" href="#volverArriba">Ir arriba</a>
         </div>
     </footer>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
